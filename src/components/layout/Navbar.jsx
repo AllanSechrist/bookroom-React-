@@ -18,6 +18,9 @@ function Navbar() {
 						<Link to="/about" className="btn btn-ghost btn-sm rounded-btn">
 							About
 						</Link>
+						<Link to="/login" className="btn btn-ghost btn-sm rounded-btn">
+							Login
+						</Link>
 					</div>
 				</div>
       </div>
