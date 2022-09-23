@@ -1,31 +1,21 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Field } from "react-final-form";
+import LoginContext from "../context/login/LoginContext";
+import { getToken } from "../context/login/LoginActions";
 
-import axiosInstance from "../api/axios";
-const LOGIN_URL = "v1/auth/login/";
 
 function Login() {
-  const navigate = useNavigate()
-  const getToken = async (username, email, password) => {
-    await axiosInstance
-      .post(LOGIN_URL, {
-        username: username,
-        email: email,
-        password: password,
-      })
-      .then((res) => {
-        localStorage.setItem("access_token", res.data.key);
-        axiosInstance.defaults.headers["Authorization"] =
-          "Token " + localStorage.getItem("access_token");
-      });
-  };
+  const navigate = useNavigate();
+  const { token, dispatch } = useContext(LoginContext);
+
   const onSubmit = (values) => {
     getToken(values.username, values.email, values.password);
-
+    dispatch({type: "LOGIN", payload: localStorage.getItem("access_token")})
   };
 
-  if (localStorage.getItem("access_token") && localStorage.getItem("access_token" !== undefined))  //add to context later
-    navigate('/')
+  // if (token && token !== "" && token !== undefined)
+  //   navigate("/");
 
   return (
     <div>

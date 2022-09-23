@@ -11,11 +11,11 @@ import Login from "./pages/Login";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 // CONTEXT //
-import LoginContext from "./context/login/LoginContext";
+import { LoginProvider } from "./context/login/LoginContext";
 
 function App() {
   return (
-    <LoginContext>
+    <LoginProvider>
       <Router>
         <div className="flex flex-col justify-between h-screen">
           <Navbar />
@@ -31,7 +31,7 @@ function App() {
           <Footer />
         </div>
       </Router>
-    </LoginContext>
+    </LoginProvider>
   );
 }
 

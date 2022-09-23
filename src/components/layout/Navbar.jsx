@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import LoginContext from "../../context/login/LoginContext";
 import { Link } from "react-router-dom";
-import axiosInstance from "../../api/axios";
-const LOGOUT_URL = "v1/auth/logout/"
-
 
 function Navbar() {
-	const logout = () => {
-		localStorage.removeItem("access_token")
-		axiosInstance.post(LOGOUT_URL)
+  const { token, dispatch } = useContext(LoginContext);
 
+	const handleOnClick = () => {
+		dispatch({type: "LOGOUT"})
 	}
 
 
@@ -20,24 +18,28 @@ function Navbar() {
             BookRoom
           </Link>
         </div>
-				<div className="flex-1 px-2 mx-2">
-					<div className="flex justify-end">
-						<Link to="/" className="btn btn-ghost btn-sm rounded-btn">
-							Home
-						</Link>
-						<Link to="/about" className="btn btn-ghost btn-sm rounded-btn">
-							About
-						</Link>
-						{localStorage.getItem("access_token") && (
-							<button className="btn btn-ghost btn-sm rounded-btn" onClick={() => logout()}>
-								Logout
-							</button>
-						)}
-						<Link to="/login" className="btn btn-ghost btn-sm rounded-btn">
-							Login
-						</Link>
-					</div>
-				</div>
+        <div className="flex-1 px-2 mx-2">
+          <div className="flex justify-end">
+            <Link to="/" className="btn btn-ghost btn-sm rounded-btn">
+              Home
+            </Link>
+            <Link to="/about" className="btn btn-ghost btn-sm rounded-btn">
+              About
+            </Link>
+            {token ? (
+              <button
+                className="btn btn-ghost btn-sm rounded-btn"
+                onClick={handleOnClick}
+              >
+                Logout
+              </button>
+            ) : (
+              <Link to="/login" className="btn btn-ghost btn-sm rounded-btn">
+                Login
+              </Link>
+            )}
+          </div>
+        </div>
       </div>
     </nav>
   );
