@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // PAGES //
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Books from "./pages/Books";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 // COMPONENTS //
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/books" element={<Books />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </main>

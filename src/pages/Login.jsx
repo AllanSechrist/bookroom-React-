@@ -24,6 +24,7 @@ function Login() {
 
   return (
     <div>
+      <h1 className="text-center text-6xl mb-10">LOGIN</h1>
       <Form
         onSubmit={onSubmit}
         validate={(values) => {
