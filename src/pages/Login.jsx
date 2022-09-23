@@ -5,6 +5,7 @@ import axiosInstance from "../api/axios";
 const LOGIN_URL = "v1/auth/login/";
 
 function Login() {
+  const navigate = useNavigate()
   const getToken = async (username, email, password) => {
     await axiosInstance
       .post(LOGIN_URL, {
@@ -20,7 +21,11 @@ function Login() {
   };
   const onSubmit = (values) => {
     getToken(values.username, values.email, values.password);
+
   };
+
+  if (localStorage.getItem("access_token") && localStorage.getItem("access_token" !== undefined))  //add to context later
+    navigate('/')
 
   return (
     <div>

@@ -1,7 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axiosInstance from "../../api/axios";
+const LOGOUT_URL = "v1/auth/logout/"
+
 
 function Navbar() {
+	const logout = () => {
+		localStorage.removeItem("access_token")
+		axiosInstance.post(LOGOUT_URL)
+
+	}
+
+
   return (
     <nav className="navbar mb-12 shadow-lg bg-neutral text-neutral-content">
       <div className="container mx-auto">
@@ -18,6 +28,11 @@ function Navbar() {
 						<Link to="/about" className="btn btn-ghost btn-sm rounded-btn">
 							About
 						</Link>
+						{localStorage.getItem("access_token") && (
+							<button className="btn btn-ghost btn-sm rounded-btn" onClick={() => logout()}>
+								Logout
+							</button>
+						)}
 						<Link to="/login" className="btn btn-ghost btn-sm rounded-btn">
 							Login
 						</Link>
