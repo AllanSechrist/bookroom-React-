@@ -1,21 +1,19 @@
-import { useContext } from "react";
+import {useContext} from 'react'
+import LoginContext from '../context/login/LoginContext'
 import { useNavigate } from "react-router-dom";
 import { Form, Field } from "react-final-form";
-import LoginContext from "../context/login/LoginContext";
 import { getToken } from "../context/login/LoginActions";
-
 
 function Login() {
   const navigate = useNavigate();
-  const { token, dispatch } = useContext(LoginContext);
+  const { hasToken, dispatch } = useContext(LoginContext)
 
   const onSubmit = (values) => {
     getToken(values.username, values.email, values.password);
-    dispatch({type: "LOGIN", payload: localStorage.getItem("access_token")})
+    dispatch({type: "LOGIN"})
   };
 
-  // if (token && token !== "" && token !== undefined)
-  //   navigate("/");
+  if (hasToken) navigate("/");
 
   return (
     <div>

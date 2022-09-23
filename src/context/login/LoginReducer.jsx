@@ -3,20 +3,15 @@ const loginReducer = (state, action) => {
     case "LOGIN":
       return {
         ...state,
-        token: action.payload,
+        hasToken: true,
 				loading: false,
       };
     case "LOGOUT":
       return {
         ...state,
-        token: null,
+        hasToken: false,
 				loading: false,
       };
-		case "LOADING":
-			return {
-				...state,
-				loading: true,
-			}
 		default:
 			return state;
   }
