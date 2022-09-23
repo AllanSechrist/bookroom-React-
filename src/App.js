@@ -10,24 +10,28 @@ import Login from "./pages/Login";
 // COMPONENTS //
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+// CONTEXT //
+import LoginContext from "./context/login/LoginContext";
 
 function App() {
   return (
-    <Router>
-      <div className="flex flex-col justify-between h-screen">
-        <Navbar />
-        <main className="container mx-auto px-3 pb-12">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/books" element={<Books />} />
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-        </main>
-				<Footer />
-      </div>
-    </Router>
+    <LoginContext>
+      <Router>
+        <div className="flex flex-col justify-between h-screen">
+          <Navbar />
+          <main className="container mx-auto px-3 pb-12">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/books" element={<Books />} />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </LoginContext>
   );
 }
 
