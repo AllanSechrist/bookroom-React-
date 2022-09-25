@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
+export const LOGIN_URL = "/login/";
+export const LOGOUT_URL = "/logout/";
+
+const axiosAuth = axios.create({
   baseURL: "http://localhost:8000/api/v1/auth",
   headers: {
     Authorization: localStorage.getItem("access_token")
@@ -11,4 +14,4 @@ const axiosInstance = axios.create({
   },
 });
 
-export default axiosInstance
+export default axiosAuth;

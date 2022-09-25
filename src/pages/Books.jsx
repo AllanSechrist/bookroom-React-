@@ -1,26 +1,21 @@
-import React, {useState, useEffect} from "react";
-import axiosBooks from "../api/axiosBooks";
+import React, { useEffect, useContext } from "react";
 import Book from "../components/books/Book";
-
-const BOOKS_URL = ""
+import { Context } from "../context/helpers/Context";
 
 function Books() {
-	const [booksList, setBooksList] = useState([])
-	const getBooks = async () => {
-		const data = await axiosBooks.get(BOOKS_URL)
-		const books = data.data
-		setBooksList(books)
-	}
-	
-	useEffect(() => {
-		getBooks()
-	}, [])
+  const { store, actions } = useContext(Context);
 
-  return <div>
-		{booksList.map((book) => {
-			return <Book key={book.id} book={book} />;
-		})}
-	</div>;
+  useEffect(() => {
+    actions.getBooks();
+  }, []);
+
+  return (
+    <div>
+      {store.books.map((book) => {
+        return <Book key={book.id} book={book} />;
+      })}
+    </div>
+  );
 }
 
 export default Books;

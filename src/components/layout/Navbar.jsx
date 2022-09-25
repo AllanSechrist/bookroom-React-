@@ -1,15 +1,10 @@
-import React, {useContext} from "react";
-import LoginContext from "../../context/login/LoginContext";
-import { logout } from "../../context/login/LoginActions";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import {Context} from '../../context/helpers/Context';
 
-const handleOnClick = (dispatch) => {
-  logout()
-  dispatch({type: "LOGOUT"})
-}
 
 function Navbar() {
-  const {hasToken, dispatch} = useContext(LoginContext)
+  const { store, actions } = useContext(Context);
   return (
     <nav className="navbar mb-12 shadow-lg bg-neutral text-neutral-content">
       <div className="container mx-auto">
@@ -26,18 +21,22 @@ function Navbar() {
             <Link to="/about" className="btn btn-ghost btn-sm rounded-btn">
               About
             </Link>
-            {hasToken ? (
+            {store.token && (
               <button
                 className="btn btn-ghost btn-sm rounded-btn"
-                onClick={() => {handleOnClick(dispatch)}}
+                onClick={() => {
+                  actions.logout();
+                }}
               >
                 Logout
               </button>
-            ) : (
+            )}
+            {!store.token && (
               <Link to="/login" className="btn btn-ghost btn-sm rounded-btn">
                 Login
               </Link>
             )}
+           
           </div>
         </div>
       </div>
