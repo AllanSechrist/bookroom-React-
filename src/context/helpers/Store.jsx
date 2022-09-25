@@ -1,11 +1,14 @@
 import axiosBooks from "../../api/axiosBooks";
+import axiosRooms from "../../api/axiosRooms";
 import axiosAuth, { LOGIN_URL, LOGOUT_URL } from "../../api/axiosAuth";
+import axios from "axios";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
       books: [],
+      rooms: [],
     },
     actions: {
       syncTokenFromLocalStore: () => {
@@ -19,6 +22,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         const books = data.data;
         setStore({ books: books });
       },
+      getRooms: async () => {
+        const data = await axiosRooms.get("");
+        const rooms = data.data;
+        setStore({ rooms: rooms})
+      },
+      // LOGIN
       login: async (username, email, password) => {
         await axiosAuth
           .post(LOGIN_URL, {
