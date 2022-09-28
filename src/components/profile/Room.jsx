@@ -1,5 +1,3 @@
-import Book from "../books/Book";
-
 function room({ room: { id, name, subtitle, books } }) {
   return (
     <>
@@ -12,11 +10,7 @@ function room({ room: { id, name, subtitle, books } }) {
           <div>
             <ul>
               {books.map((book) => {
-                return (
-                  <li className="text-2xl">
-                    {book.title}
-                  </li>
-                );
+                return <li className="text-2xl">{book.title}</li>;
               })}
             </ul>
           </div>
