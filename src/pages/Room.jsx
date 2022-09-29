@@ -16,7 +16,6 @@ function ReqRoom() {
       {/* {store.rooms.map((room) => {
         return <Room key={room.id} room={room} />;
       })} */}
-      {console.log(roomId)}
       <Room room={store.room} />
     </div>
   );

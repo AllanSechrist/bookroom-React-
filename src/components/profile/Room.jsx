@@ -9,7 +9,7 @@ function room({ room: { id, name, subtitle, books } }) {
           </div>
           <div>
             <ul>
-              {books.map((book) => {
+              {books?.map((book) => {
                 return <li className="text-2xl">{book.title}</li>;
               })}
             </ul>
