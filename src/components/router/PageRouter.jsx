@@ -10,6 +10,7 @@ import NotFound from "../../pages/NotFound";
 import Login from "../../pages/Login";
 import Profile from "../../pages/Profile";
 import ReqRoom from "../../pages/Room";
+import NewRoomForm from "../../pages/NewRoomForm";
 // COMPONENTS //
 import Navbar from "../layout/Navbar";
 import Footer from "../layout/Footer";
@@ -28,14 +29,15 @@ function PageRouter() {
               <Route path="/about" element={<About />} />
               <Route path="/login" element={<Login />} />
               {/* DISPLAYS ALL OF THE USERS BOOKS*/}
-              <Route path="/books" element={<Books />} />{" "}
+              <Route path="/books" element={<Books />} />
               {/* DISPLAYS REQUESTED BOOK*/}
-              <Route path="/books/:bookId" element={<ReqBook />} />{" "}
+              <Route path="/books/:bookId" element={<ReqBook />} />
               {/* DISPLAYS ALL OF THE USERS ROOMS*/}
-              <Route path="/books/new" element={<NewBookForm />} />{" "}
-              <Route path="/profile" element={<Profile />} />{" "}
+              <Route path="/books/new" element={<NewBookForm />} />
+              <Route path="/profile" element={<Profile />} />
               {/* DISPLAYS REQUESTED ROOM*/}
-              <Route path="/profile/room/:roomId" element={<ReqRoom />} />{" "}
+              <Route path="/profile/room/:roomId" element={<ReqRoom />} />
+              <Route path="/profile/room/new" element={<NewRoomForm />} />
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </main>

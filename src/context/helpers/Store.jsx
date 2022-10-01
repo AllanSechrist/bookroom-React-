@@ -55,6 +55,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({ room: room });
       },
+      newRoom: async (name, subtitle, books) => {
+        await axiosBooks
+          .post(``, {
+            name: name,
+            subtitle: subtitle,
+            books: books,
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
       // LOGIN ////////////////////////////////////////////////////////
       login: async (username, email, password) => {
         await axiosAuth
