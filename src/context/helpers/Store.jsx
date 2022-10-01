@@ -56,7 +56,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ room: room });
       },
       newRoom: async (name, subtitle, books) => {
-        await axiosBooks
+        await axiosRooms
           .post(``, {
             name: name,
             subtitle: subtitle,
