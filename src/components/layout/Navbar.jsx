@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import {Context} from '../../context/helpers/Context';
-
+import { Context } from "../../context/helpers/Context";
 
 function Navbar() {
   const { store, actions } = useContext(Context);
@@ -22,21 +21,25 @@ function Navbar() {
               About
             </Link>
             {store.token && (
-              <button
-                className="btn btn-ghost btn-sm rounded-btn"
-                onClick={() => {
-                  actions.logout();
-                }}
-              >
-                Logout
-              </button>
+              <>
+                <Link to="/books/new" className="btn btn-ghost btn-sm rounded-btn">
+                  + New Book
+                </Link>
+                <button
+                  className="btn btn-ghost btn-sm rounded-btn"
+                  onClick={() => {
+                    actions.logout();
+                  }}
+                >
+                  Logout
+                </button>
+              </>
             )}
             {!store.token && (
               <Link to="/login" className="btn btn-ghost btn-sm rounded-btn">
                 Login
               </Link>
             )}
-           
           </div>
         </div>
       </div>

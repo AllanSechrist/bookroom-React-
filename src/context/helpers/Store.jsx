@@ -18,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({ token: token });
         }
       },
+      // BOOK FUNCTIONS ////////////////////////////////////////////////
       getBooks: async () => {
         const data = await axiosBooks.get("");
         const books = data.data;
@@ -28,6 +29,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         const book = data.data;
         setStore({ book: book });
       },
+      newBook: async (title, series, publisher, author, isbn) => {
+        await axiosBooks
+          .post(``, {
+            title: title,
+            series: series,
+            publisher: publisher,
+            author: author,
+            isbn: isbn,
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
+      // ROOM FUNCTIONS ///////////////////////////////////////////////
       getRooms: async () => {
         const data = await axiosRooms.get("");
         const rooms = data.data;
@@ -40,7 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({ room: room });
       },
-      // LOGIN
+      // LOGIN ////////////////////////////////////////////////////////
       login: async (username, email, password) => {
         await axiosAuth
           .post(LOGIN_URL, {

@@ -3,32 +3,38 @@ import { useNavigate } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 import { Context } from "../context/helpers/Context";
 
-function Login() {
+function NewBookForm() {
   const navigate = useNavigate();
-  const { store, actions } = useContext(Context);
+  const { actions } = useContext(Context);
 
   const onSubmit = (values) => {
-    actions.login(values.username, values.email, values.password);
+    actions.newBook(
+      values.title,
+      values.series,
+      values.publisher,
+      values.author,
+      values.isbn
+    );
+		navigate("/books")
   };
-
-  if (store.token && store.token !== "" && store.token !== undefined)
-    navigate("/");
-
   return (
     <div>
-      <h1 className="text-center text-6xl mb-10">LOGIN</h1>
+      <h1 className="text-center text-6xl mb-10">Add Book</h1>
       <Form
         onSubmit={onSubmit}
         validate={(values) => {
           const errors = {};
-          if (!values.username) {
-            errors.username = "Required";
+          if (!values.title) {
+            errors.title = "Required";
           }
-          if (!values.email) {
-            errors.email = "Required";
+          if (!values.publisher) {
+            errors.publisher = "Required";
           }
-          if (!values.password) {
-            errors.password = "Required";
+          if (!values.author) {
+            errors.author = "Required";
+          }
+          if (!values.isbn) {
+            errors.isbn = "Required";
           }
           return errors;
         }}
@@ -40,32 +46,50 @@ function Login() {
           pristine,
         }) => (
           <form onSubmit={handleSubmit}>
-            <Field name="username">
+            <Field name="title">
               {({ input, meta }) => (
                 <div className="form-margin-top">
-                  {/* <label>Username</label> */}
-                  <input {...input} type="text" placeholder="Username" />
+                  {/* <label>Title</label> */}
+                  <input {...input} type="text" placeholder="Title" />
                   {(meta.error || meta.submitError) && meta.touched && (
                     <span>{meta.error || meta.submitError}</span>
                   )}
                 </div>
               )}
             </Field>
-            <Field name="email">
+            <Field name="series">
               {({ input, meta }) => (
                 <div className="form-margin-top">
-                  <input {...input} type="text" placeholder="Email" />
+                  <input {...input} type="text" placeholder="Series" />
                   {(meta.error || meta.submitError) && meta.touched && (
                     <span>{meta.error || meta.submitError}</span>
                   )}
                 </div>
               )}
             </Field>
-            <Field name="password">
+            <Field name="publisher">
               {({ input, meta }) => (
                 <div className="form-margin-top">
-                  {/* <label>Password</label> */}
-                  <input {...input} type="password" placeholder="Password" />
+                  {/* <label>Publisher</label> */}
+                  <input {...input} type="text" placeholder="Publisher" />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <Field name="author">
+              {({ input, meta }) => (
+                <div className="form-margin-top">
+                  {/* <label>Author</label> */}
+                  <input {...input} type="text" placeholder="Author" />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <Field name="isbn">
+              {({ input, meta }) => (
+                <div className="form-margin-top">
+                  {/* <label>ISBN</label> */}
+                  <input {...input} type="text" placeholder="ISBN" />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
@@ -77,7 +101,7 @@ function Login() {
                 className="btn btn-primary"
                 disabled={submitting}
               >
-                Log In
+                +New Book
               </button>
               <button
                 type="button"
@@ -95,4 +119,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default NewBookForm;
