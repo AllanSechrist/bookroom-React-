@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function room({ room: { id, name, subtitle, books } }) {
   return (
     <>
@@ -13,6 +15,9 @@ function room({ room: { id, name, subtitle, books } }) {
                 return <li className="text-2xl">{book.title}</li>;
               })}
             </ul>
+            <div className="btn-group my-10 flex items-center justify-center">
+              <Link to={`/profile/room/${id}/edit/`} className="btn btn-primary">Add Books</Link>
+            </div>
           </div>
         </div>
       </div>

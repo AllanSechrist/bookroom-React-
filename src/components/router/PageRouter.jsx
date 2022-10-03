@@ -11,6 +11,7 @@ import Login from "../../pages/Login";
 import Profile from "../../pages/Profile";
 import ReqRoom from "../../pages/Room";
 import NewRoomForm from "../../pages/NewRoomForm";
+import EditRoomForm from "../../pages/EditRoomForm";
 // COMPONENTS //
 import Navbar from "../layout/Navbar";
 import Footer from "../layout/Footer";
@@ -37,6 +38,7 @@ function PageRouter() {
               <Route path="/profile" element={<Profile />} />
               {/* DISPLAYS REQUESTED ROOM*/}
               <Route path="/profile/room/:roomId" element={<ReqRoom />} />
+              <Route path="/profile/room/:roomId/edit" element={<EditRoomForm />} />
               <Route path="/profile/room/new" element={<NewRoomForm />} />
               <Route path="/*" element={<NotFound />} />
             </Routes>

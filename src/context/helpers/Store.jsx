@@ -55,9 +55,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         setStore({ room: room });
       },
-      newRoom: async (name, subtitle, books) => {
+      newRoom: async (name, subtitle) => {
         await axiosRooms
           .post(``, {
+            name: name,
+            subtitle: subtitle,
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
+      editRoom: async (name, subtitle, books, roomId) => {
+        await axiosRooms
+          .patch(`${roomId}/`, {
             name: name,
             subtitle: subtitle,
             books: books,

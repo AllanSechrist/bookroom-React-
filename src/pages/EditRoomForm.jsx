@@ -1,23 +1,33 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 import { Context } from "../context/helpers/Context";
 
-function NewRoomForm() {
-  // form to create a new room
+function EditRoomForm() {
+  // form to edit a room
   const navigate = useNavigate();
-  const { actions } = useContext(Context);
+	let {roomId} = useParams();
+  const { store, actions } = useContext(Context);
 
+  useEffect(() => {
+    actions.getBooks();
+		actions.getRoom(roomId)
+  }, []);
 
   const onSubmit = (values) => {
-    actions.newRoom(values.name, values.subtitle);
+    actions.editRoom(values.name, values.subtitle, values.books, roomId);
     navigate("/profile");
   };
   return (
     <div className="text-center">
-      <h1 className="text-center text-6xl mb-10">Add Room</h1>
+      <h1 className="text-center text-6xl mb-10">Edit Room</h1>
       <Form
         onSubmit={onSubmit}
+				initialValues={{
+					name: store.room.name,
+					subtitle: store.room.subtitle,
+
+				}}
         validate={(values) => {
           const errors = {};
           if (!values.name) {
@@ -79,7 +89,7 @@ function NewRoomForm() {
                 </div>
               )}
             </Field>
-            {/* <div className="form-control">
+            <div className="form-control">
               <label className="label">
                 <span className="label-text">Pick books to add</span>
               </label>
@@ -88,7 +98,7 @@ function NewRoomForm() {
                   return <option value={book.id}>{book.title}</option>;
                 })}
               </Field>
-            </div> */}
+            </div>
             {submitError && <div className="error">{submitError}</div>}
             <div className="btn-group my-10 flex items-center justify-center">
               <button
@@ -96,7 +106,7 @@ function NewRoomForm() {
                 className="btn btn-primary"
                 disabled={submitting}
               >
-                +New Room
+                Update
               </button>
               <button
                 type="button"
@@ -115,4 +125,4 @@ function NewRoomForm() {
   );
 }
 
-export default NewRoomForm;
+export default EditRoomForm;
