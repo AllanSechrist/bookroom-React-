@@ -42,6 +42,19 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(error);
           });
       },
+      editBook: async (title, series, publisher, author, isbn, bookId) => {
+        await axiosBooks
+          .patch(`${bookId}/`, {
+            title: title,
+            series: series,
+            publisher: publisher,
+            author: author,
+            isbn: isbn,
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
       // ROOM FUNCTIONS ///////////////////////////////////////////////
       getRooms: async () => {
         const data = await axiosRooms.get("");

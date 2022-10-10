@@ -22,8 +22,11 @@ function Navbar() {
             </Link>
             {store.token && (
               <>
-                <Link to="/profile/room/new" className="btn btn-ghost btn-sm rounded-btn">
+                {/* <Link to="/profile/room/new" className="btn btn-ghost btn-sm rounded-btn">
                   + New Room
+                </Link> */}
+                <Link to='/books' className='btn btn-ghost btn-sm rounded-btn'>
+                  Books
                 </Link>
                 <Link to="/books/new" className="btn btn-ghost btn-sm rounded-btn">
                   + New Book
