@@ -55,6 +55,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(error);
           });
       },
+      deleteBook: async (bookId) => {
+        await axiosBooks.delete(`${bookId}/`).catch(function (error) {
+          console.log(error);
+        });
+      },
       // ROOM FUNCTIONS ///////////////////////////////////////////////
       getRooms: async () => {
         const data = await axiosRooms.get("");

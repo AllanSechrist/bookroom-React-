@@ -1,14 +1,20 @@
 import React, { useEffect, useContext } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 // import Book from "../components/books/Book";
 import { Context } from "../context/helpers/Context";
 
 function Books() {
   const { store, actions } = useContext(Context);
 
+  const handleDelete = (bookId) => {
+    actions.deleteBook(bookId);
+    window.location.reload(false)
+  }
+
   useEffect(() => {
     actions.getBooks();
   }, []);
+
 
   return (
     <div>
@@ -33,8 +39,24 @@ function Books() {
               <th>{book.publisher}</th>
               <th>{book.author}</th>
               <th>{book.isbn}</th>
-              <th><Link to={`/books/${book.id}/edit/`} className='btn btn-sm btn-info'>Edit</Link></th>
-              <th><button className='btn btn-sm btn-error'>Delete</button></th>
+              <th>
+                <Link
+                  to={`/books/${book.id}/edit/`}
+                  className="btn btn-sm btn-info"
+                >
+                  Edit
+                </Link>
+              </th>
+              <th>
+                <button
+                  className="btn btn-sm btn-error"
+                  onClick={() => {
+                    handleDelete(book.id)
+                  }}
+                >
+                  Delete
+                </button>
+              </th>
             </tr>
           );
         })}
