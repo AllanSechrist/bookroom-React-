@@ -63,7 +63,7 @@ function EditBookForm() {
               {({ input, meta }) => (
                 <div className="form-margin-top">
                   {/* <label>Title</label> */}
-                  <input {...input} type="text" placeholder="Title" />
+                  <input {...input} type="text" placeholder="Title" className="input w-full max-w-md m-7"/>
                   {(meta.error || meta.submitError) && meta.touched && (
                     <span>{meta.error || meta.submitError}</span>
                   )}
@@ -73,7 +73,7 @@ function EditBookForm() {
             <Field name="series">
               {({ input, meta }) => (
                 <div className="form-margin-top">
-                  <input {...input} type="text" placeholder="Series" />
+                  <input {...input} type="text" placeholder="Series" className="input w-full max-w-md m-7"/>
                   {(meta.error || meta.submitError) && meta.touched && (
                     <span>{meta.error || meta.submitError}</span>
                   )}
@@ -84,7 +84,7 @@ function EditBookForm() {
               {({ input, meta }) => (
                 <div className="form-margin-top">
                   {/* <label>Publisher</label> */}
-                  <input {...input} type="text" placeholder="Publisher" />
+                  <input {...input} type="text" placeholder="Publisher" className="input w-full max-w-md m-7"/>
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
@@ -93,7 +93,7 @@ function EditBookForm() {
               {({ input, meta }) => (
                 <div className="form-margin-top">
                   {/* <label>Author</label> */}
-                  <input {...input} type="text" placeholder="Author" />
+                  <input {...input} type="text" placeholder="Author" className="input w-full max-w-md m-7"/>
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
@@ -102,7 +102,7 @@ function EditBookForm() {
               {({ input, meta }) => (
                 <div className="form-margin-top">
                   {/* <label>ISBN</label> */}
-                  <input {...input} type="text" placeholder="ISBN" />
+                  <input {...input} type="text" placeholder="ISBN" className="input w-full max-w-md m-7"/>
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}

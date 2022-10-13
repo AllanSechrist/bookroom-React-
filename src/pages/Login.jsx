@@ -39,12 +39,12 @@ function Login() {
           submitting,
           pristine,
         }) => (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="login-form">
             <Field name="username">
               {({ input, meta }) => (
                 <div className="form-margin-top">
                   {/* <label>Username</label> */}
-                  <input {...input} type="text" placeholder="Username" />
+                  <input {...input} type="text" placeholder="Username" className="input w-full max-w-xs m-7" />
                   {(meta.error || meta.submitError) && meta.touched && (
                     <span>{meta.error || meta.submitError}</span>
                   )}
@@ -54,7 +54,7 @@ function Login() {
             <Field name="email">
               {({ input, meta }) => (
                 <div className="form-margin-top">
-                  <input {...input} type="text" placeholder="Email" />
+                  <input {...input} type="text" placeholder="Email"  className="input w-full max-w-xs m-7" />
                   {(meta.error || meta.submitError) && meta.touched && (
                     <span>{meta.error || meta.submitError}</span>
                   )}
@@ -65,7 +65,7 @@ function Login() {
               {({ input, meta }) => (
                 <div className="form-margin-top">
                   {/* <label>Password</label> */}
-                  <input {...input} type="password" placeholder="Password" />
+                  <input {...input} type="password" placeholder="Password" className="input w-full max-w-xs m-7" />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
@@ -85,7 +85,7 @@ function Login() {
                 disabled={submitting || pristine}
                 className="btn btn-ghost ml-5"
               >
-                Reset
+                Clear
               </button>
             </div>
           </form>
