@@ -64,6 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       getRooms: async () => {
         const data = await axiosRooms.get("");
         const rooms = data.data;
+        console.log(rooms)
         setStore({ rooms: rooms });
       },
       getRoom: async (roomId) => {
@@ -78,6 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .post(``, {
             name: name,
             subtitle: subtitle,
+            books: []
           })
           .catch(function (error) {
             console.log(error);

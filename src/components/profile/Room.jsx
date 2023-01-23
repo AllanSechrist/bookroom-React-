@@ -12,7 +12,7 @@ function room({ room: { id, name, subtitle, books } }) {
           <div>
             <ul>
               {books?.map((book) => {
-                return <li className="text-2xl">{book.title}</li>;
+                return <li className="text-2xl">{book}</li>;
               })}
             </ul>
             <div className="btn-group my-10 flex items-center justify-center">

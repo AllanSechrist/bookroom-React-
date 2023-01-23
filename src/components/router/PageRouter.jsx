@@ -37,11 +37,11 @@ function PageRouter() {
               <Route path="/books/:bookId/edit" element={<EditBookForm />} />
               {/* DISPLAYS ALL OF THE USERS ROOMS*/}
               <Route path="/books/new" element={<NewBookForm />} />
-              {/* <Route path="/profile" element={<Profile />} /> */}
+              <Route path="/profile" element={<Profile />} />
               {/* DISPLAYS REQUESTED ROOM*/}
-              {/* <Route path="/profile/room/:roomId" element={<ReqRoom />} />
+              <Route path="/profile/room/:roomId" element={<ReqRoom />} />
               <Route path="/profile/room/:roomId/edit" element={<EditRoomForm />} />
-              <Route path="/profile/room/new" element={<NewRoomForm />} /> */}
+              <Route path="/profile/room/new" element={<NewRoomForm />} />
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </main>
