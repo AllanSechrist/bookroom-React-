@@ -96,6 +96,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(error);
           });
       },
+      deleteRoom: async (roomId) => {
+        await axiosRooms.delete(`${roomId}/`).catch(function (error) {
+          console.log(error);
+        });
+      },
       // LOGIN ////////////////////////////////////////////////////////
       login: async (username, email, password) => {
         await axiosAuth

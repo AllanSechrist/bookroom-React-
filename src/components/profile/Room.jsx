@@ -1,6 +1,15 @@
+import { useContext } from 'react'
 import { Link } from "react-router-dom";
+import {Context} from "../../context/helpers/Context"
 
-function room({ room: { id, name, subtitle, books } }) {
+function Room({ room: { id, name, subtitle, books } }) {
+  const {actions} = useContext(Context)
+
+  const handleDelete = (roomId) => {
+    actions.deleteRoom(roomId);
+    window.location.reload(false)
+  }
+
   return (
     <>
       <div className="card shadow-xl bg-base-100">
@@ -18,6 +27,11 @@ function room({ room: { id, name, subtitle, books } }) {
             <div className="btn-group my-10 flex items-center justify-center">
               <Link to={`/profile/room/${id}/edit/`} className="btn btn-primary">Add Books</Link>
             </div>
+            <div className="btn-group btn btn-error my-10 flex items-center justify-center" onClick={() => {
+              handleDelete(id)
+            }}>
+             Delete Room
+            </div>
           </div>
         </div>
       </div>
@@ -25,4 +39,4 @@ function room({ room: { id, name, subtitle, books } }) {
   );
 }
 
-export default room;
+export default Room;
